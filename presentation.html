@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Budget - Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 48px;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 36px;
+            margin-bottom: 25px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 28px;
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .content {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .content ul {
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .content li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .title-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .title-slide h1 {
+            font-size: 64px;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #764ba2;
+            margin-top: 20px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .flow-diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .flow-step {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #667eea;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>My Budget</h1>
+            <p class="subtitle">Personal Budget Tracker</p>
+            <p style="font-size: 24px; margin-top: 40px; color: #666;">A Comprehensive Full-Stack Web Application</p>
+            <div class="slide-number">1 / 17</div>
+        </div>
+
+        <!-- Slide 2: Project Overview -->
+        <div class="slide">
+            <div class="slide-number">2 / 17</div>
+            <h1>Project Overview</h1>
+            <div class="content">
+                <p>Good [morning/afternoon], everyone. Today I'm excited to present my project: <span class="highlight">My Budget</span>, a comprehensive personal budget tracking web application.</p>
+                <p style="margin-top: 20px;">This is a full-stack application that helps users manage their finances, track expenses, and learn about financial literacy through an integrated chatbot.</p>
+                <p style="margin-top: 20px;">The application features:</p>
+                <ul>
+                    <li>Role-based access (Users & Admins)</li>
+                    <li>Real-time budget tracking</li>
+                    <li>Interactive analytics and reports</li>
+                    <li>Financial education content</li>
+                    <li>AI-powered financial assistant chatbot</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Use Cases - Users -->
+        <div class="slide">
+            <div class="slide-number">3 / 17</div>
+            <h1>Use Cases - For Users</h1>
+            <div class="content">
+                <p>For regular users, the application serves several key purposes:</p>
+                <h3>1. Personal Budget Management</h3>
+                <p>Users can track daily expenses across multiple categories like food, transport, rent, and utilities. They can record income from various sources and set monthly budget limits for each category. The system monitors spending against budgets in real-time.</p>
+                <h3>2. Financial Analysis & Reporting</h3>
+                <p>Users can view their spending patterns through interactive charts, analyze category-wise expense breakdowns, track monthly trends, and see how much they're saving.</p>
+                <h3>3. Financial Education</h3>
+                <p>Users can access educational content created by administrators and get instant answers from our financial chatbot about budgeting, saving strategies, investing basics, and debt management.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Use Cases - Admins -->
+        <div class="slide">
+            <div class="slide-number">4 / 17</div>
+            <h1>Use Cases - For Administrators</h1>
+            <div class="content">
+                <p>For administrators, the application provides powerful management tools:</p>
+                <ul>
+                    <li><strong>User Management:</strong> View all registered users, activate or deactivate accounts, reset passwords, and monitor user activity</li>
+                    <li><strong>Content Management:</strong> Create and manage financial education articles that users can access</li>
+                    <li><strong>System Administration:</strong> Send system-wide notifications to all users and view comprehensive system statistics and analytics</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Application Pages -->
+        <div class="slide">
+            <div class="slide-number">5 / 17</div>
+            <h1>Application Pages</h1>
+            <div class="content">
+                <h3>1. Landing Page</h3>
+                <p>First point of contact with hero section, feature showcase, "How It Works" section, and login/registration modals.</p>
+                
+                <h3>2. User Dashboard</h3>
+                <p>Main interface with eight sections: Overview, Expenses, Income, Budgets, Reports, Education (with chatbot), Notifications, and Profile.</p>
+                
+                <h3>3. Admin Dashboard</h3>
+                <p>Administrative control with sections for user management, education content management, notifications, and system statistics.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Database Design -->
+        <div class="slide">
+            <div class="slide-number">6 / 17</div>
+            <h1>Database Design</h1>
+            <div class="content">
+                <p>I chose <span class="highlight">SQLite</span> as the database for this project.</p>
+                <p style="margin-top: 20px;">The database consists of <strong>7 main tables</strong>:</p>
+                <div class="two-column" style="margin-top: 20px;">
+                    <ul>
+                        <li><strong>users</strong> - User accounts & authentication</li>
+                        <li><strong>expenses</strong> - Track all expenses</li>
+                        <li><strong>income</strong> - Record income sources</li>
+                        <li><strong>budgets</strong> - Monthly budget limits</li>
+                    </ul>
+                    <ul>
+                        <li><strong>education</strong> - Financial content</li>
+                        <li><strong>notifications</strong> - System alerts</li>
+                        <li><strong>savings_goals</strong> - User objectives</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 20px;">Features: Foreign key constraints, indexes for performance, data validation, and automatic timestamps.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Why SQLite - Part 1 -->
+        <div class="slide">
+            <div class="slide-number">7 / 17</div>
+            <h1>Why SQLite? - Part 1</h1>
+            <div class="content">
+                <h3>1. Simplicity & Zero Configuration</h3>
+                <p>SQLite is file-based - no separate database server needed. This makes deployment incredibly easy with a single database file that can be easily backed up or transferred. Perfect for development - quick setup without complex database server installation.</p>
+                
+                <h3>2. Lightweight & Embedded</h3>
+                <p>Very small footprint, minimal resources - ideal for small to medium applications. Self-contained with all database functionality in a single library. Works out of the box with Node.js without external dependencies.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Why SQLite - Part 2 -->
+        <div class="slide">
+            <div class="slide-number">8 / 17</div>
+            <h1>Why SQLite? - Part 2</h1>
+            <div class="content">
+                <h3>3. Performance for Small-Medium Scale</h3>
+                <p>Fast read operations, excellent performance for moderate concurrent users. ACID compliant ensuring data integrity. Efficient for single-user or small team applications - perfect for personal budget tracking.</p>
+                
+                <h3>4. Cost-Effective</h3>
+                <p>Completely free and open-source with no licensing costs. No hosting costs - no separate database hosting service needed. Minimal maintenance with low administrative overhead.</p>
+                
+                <h3>5. Suitable for This Project</h3>
+                <p>Personal budget tracking is typically single-user or small family use. Data volume for personal financial data is relatively small. Ideal for MVP and prototype stage.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Chatbot Integration - Overview -->
+        <div class="slide">
+            <div class="slide-number">9 / 17</div>
+            <h1>Chatbot Integration - Overview</h1>
+            <div class="content">
+                <p>The Financial Education Chatbot is one of the most interesting features of this application.</p>
+                <p style="margin-top: 20px;">It provides users with <span class="highlight">instant, AI-powered answers</span> to financial questions, helping them learn about:</p>
+                <ul style="margin-top: 15px;">
+                    <li>Budgeting strategies</li>
+                    <li>Saving techniques</li>
+                    <li>Investment basics</li>
+                    <li>Debt management</li>
+                </ul>
+                <p style="margin-top: 20px;">All in real-time, directly within the application.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Chatbot - Frontend -->
+        <div class="slide">
+            <div class="slide-number">10 / 17</div>
+            <h1>Chatbot - Frontend Implementation</h1>
+            <div class="content">
+                <p>On the frontend, the chatbot is implemented as a <span class="highlight">modal-based chat interface</span>.</p>
+                <ul style="margin-top: 20px;">
+                    <li>Users click "Ask Financial Assistant" button in Education section</li>
+                    <li>Floating chat window appears with conversation history</li>
+                    <li>Clear distinction between user messages and bot responses with timestamps</li>
+                    <li>Users can type questions and press Enter or click send</li>
+                    <li>Loading indicators show while waiting for responses</li>
+                    <li>Graceful error handling if network connection fails</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Chatbot - Backend -->
+        <div class="slide">
+            <div class="slide-number">11 / 17</div>
+            <h1>Chatbot - Backend Implementation</h1>
+            <div class="content">
+                <p>On the backend, I created a RESTful API endpoint at <code style="background: #f0f0f0; padding: 5px 10px; border-radius: 5px;">/api/education/chatbot</code></p>
+                <p style="margin-top: 20px;">The process:</p>
+                <ul style="margin-top: 15px;">
+                    <li>Validates input - checks message isn't empty and doesn't exceed 500 characters</li>
+                    <li>Uses <span class="highlight">pattern matching</span> to analyze user input for financial keywords</li>
+                    <li>Detects topics: budgeting, saving, investing, debt management, expenses</li>
+                    <li>Generates <span class="highlight">contextual responses</span> with relevant financial advice</li>
+                    <li>Provides helpful default response if no specific topic detected</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 12: Chatbot - Integration Flow -->
+        <div class="slide">
+            <div class="slide-number">12 / 17</div>
+            <h1>Chatbot - Integration Flow</h1>
+            <div class="flow-diagram">
+                <div class="flow-step">1. User clicks "Ask Financial Assistant" button</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">2. Chatbot modal opens</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">3. User types question and sends</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">4. Frontend makes POST request to API</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">5. Backend processes message (pattern matching)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">6. Backend generates financial response</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">7. Response displayed in chat interface</div>
+            </div>
+            <p style="margin-top: 20px; text-align: center; font-size: 20px;">The whole process happens in <span class="highlight">real-time</span>, providing instant feedback.</p>
+        </div>
+
+        <!-- Slide 13: Chatbot - Technical Details -->
+        <div class="slide">
+            <div class="slide-number">13 / 17</div>
+            <h1>Chatbot - Technical Details</h1>
+            <div class="content">
+                <p>From a technical perspective, the chatbot uses <span class="highlight">keyword-based pattern matching</span>:</p>
+                <ul style="margin-top: 15px;">
+                    <li><strong>Budgeting:</strong> Recognizes "budget" or "budgeting" → explains 50/30/20 rule</li>
+                    <li><strong>Saving:</strong> Detects "save" or "saving" → explains emergency funds and automation</li>
+                    <li><strong>Investing:</strong> Identifies "invest" → covers retirement accounts and diversification</li>
+                    <li><strong>Debt:</strong> Finds "debt" or "loan" → explains avalanche/snowball methods</li>
+                </ul>
+                <p style="margin-top: 20px;">The system handles errors gracefully, provides user-friendly messages, and includes timestamp tracking for all responses.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Technology Stack -->
+        <div class="slide">
+            <div class="slide-number">14 / 17</div>
+            <h1>Technology Stack</h1>
+            <div class="two-column">
+                <div>
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Node.js - Runtime</li>
+                        <li>Express.js - Web framework</li>
+                        <li>SQLite3 - Database driver</li>
+                        <li>bcryptjs - Password hashing</li>
+                        <li>express-session - Sessions</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML5/CSS3 - Structure & styling</li>
+                        <li>Vanilla JavaScript - Logic</li>
+                        <li>Chart.js - Data visualization</li>
+                        <li>Font Awesome - Icons</li>
+                        <li>Google Fonts - Typography</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Key Statistics -->
+        <div class="slide">
+            <div class="slide-number">15 / 17</div>
+            <h1>Key Statistics</h1>
+            <div class="two-column" style="margin-top: 40px;">
+                <div class="stat-box">
+                    <h3>7</h3>
+                    <p>Database Tables</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3</h3>
+                    <p>Main Pages</p>
+                </div>
+                <div class="stat-box">
+                    <h3>8</h3>
+                    <p>Dashboard Sections</p>
+                </div>
+                <div class="stat-box">
+                    <h3>RESTful</h3>
+                    <p>API Design</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Project Highlights -->
+        <div class="slide">
+            <div class="slide-number">16 / 17</div>
+            <h1>Project Highlights</h1>
+            <div class="content">
+                <ul style="font-size: 24px; line-height: 2;">
+                    <li>✅ Complete full-stack implementation</li>
+                    <li>✅ Secure authentication with password hashing</li>
+                    <li>✅ Responsive design for all devices</li>
+                    <li>✅ Interactive analytics with charts</li>
+                    <li>✅ Financial literacy through chatbot</li>
+                    <li>✅ Comprehensive admin tools</li>
+                    <li>✅ Production-ready with error handling</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 17: Conclusion -->
+        <div class="slide title-slide">
+            <div class="slide-number">17 / 17</div>
+            <h1>Conclusion</h1>
+            <div class="content" style="text-align: center; margin-top: 60px;">
+                <p style="font-size: 28px; margin-bottom: 30px;">My Budget successfully combines modern web technologies with user-centered design to create a comprehensive budget tracking solution.</p>
+                <p style="font-size: 24px; margin-bottom: 30px;">The integration of SQLite provides simplicity and efficiency, while the chatbot enhances user education and engagement.</p>
+                <p style="font-size: 28px; margin-top: 50px; color: #667eea; font-weight: bold;">The application is ready for deployment and can serve as a foundation for a commercial budget tracking service.</p>
+                <p style="font-size: 32px; margin-top: 60px; color: #764ba2;">Thank you for your attention!</p>
+                <p style="font-size: 24px; margin-top: 20px;">Questions?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="previousSlide()">← Previous</button>
+        <button class="btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
